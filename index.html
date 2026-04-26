@@ -5,101 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Goatface Tech — AI Built Different</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #1a1e24;
-      --white:   #e8eaf0;
-      --yellow:  #00e676;
-      --dim:     #4a5260;
-      --mono:    'DM Mono', monospace;
-      --display: 'Bebas Neue', sans-serif;
-      --body:    'DM Sans', sans-serif;
+      --bg:        #0a0a0a;
+      --panel:     #0f0f0f;
+      --border:    #1a1a1a;
+      --green:     #00e676;
+      --green-dim: #00a152;
+      --white:     #e8eaf0;
+      --dim:       #4a6070;
+      --orb:       'Orbitron', sans-serif;
+      --mono:      'Share Tech Mono', monospace;
+      --body:      'Exo 2', sans-serif;
     }
 
     html, body {
-      background-color: var(--black);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='32'%3E%3Cpath d='M14 0 L28 8 L28 24 L14 32 L0 24 L0 8 Z' fill='none' stroke='%23ffffff06' stroke-width='0.5'/%3E%3C/svg%3E");
+      background-color: var(--bg);
       color: var(--white);
       font-family: var(--body);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ── layout ── */
+    /* scanline overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.06) 2px,
+        rgba(0,0,0,0.06) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* corner brackets */
+    .corner-tl, .corner-tr {
+      position: fixed;
+      top: 1.5rem;
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-tl { left: 1.5rem; border-top: 2px solid var(--green); border-left: 2px solid var(--green); }
+    .corner-tr { right: 1.5rem; border-top: 2px solid var(--green); border-right: 2px solid var(--green); }
+
     .page {
-      max-width: 860px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
     }
 
-    /* ── header ── */
-    header {
-      padding: 3rem 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards;
-    }
-
-    header img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-    }
-
-    .brand {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    .brand span {
-      color: var(--yellow);
-    }
-
-    /* ── hero ── */
+    /* HERO */
     .hero {
-      padding: 5rem 0 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .logo-wrap {
+      position: relative;
+      margin-bottom: 2.5rem;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.15s forwards;
+      animation: fadeIn 1s ease 0.2s forwards;
+    }
+
+    .logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      background: radial-gradient(ellipse at center, rgba(0,230,118,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-wrap img {
+      width: min(460px, 82vw);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 25px rgba(0,230,118,0.25)) drop-shadow(0 0 60px rgba(0,230,118,0.08));
     }
 
     .hero-eyebrow {
       font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 1.2rem;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.7s forwards;
     }
 
     .hero h1 {
-      font-family: var(--display);
-      font-size: clamp(4rem, 12vw, 8rem);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 2rem;
+      font-family: var(--orb);
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.9s forwards;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--yellow);
+    .hero h1 .accent {
+      color: var(--green);
+      text-shadow: 0 0 40px rgba(0,230,118,0.4);
     }
 
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 300;
-      line-height: 1.7;
+      line-height: 2;
       color: var(--dim);
-      max-width: 480px;
+      max-width: 420px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.1s forwards;
     }
 
     .hero-sub strong {
@@ -107,133 +141,171 @@
       font-weight: 400;
     }
 
-    /* ── divider ── */
-    .rule {
-      border: none;
-      border-top: 1px solid #252a32;
-      margin: 3rem 0;
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--dim);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.5s forwards;
     }
 
-    /* ── projects ── */
-    .projects {
-      opacity: 0;
-      animation: fadeUp 0.6s ease 0.3s forwards;
+    .scroll-hint span {
+      display: inline-block;
+      animation: bounce 1.8s ease 2s infinite;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
     }
 
     .section-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 2rem;
+      color: var(--green-dim);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* PROJECT CARDS */
     .project-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1px;
-      background: #252a32;
-      border: 1px solid #252a32;
-      margin-bottom: 1px;
+      background: var(--border);
     }
 
     .project-card {
-      background: var(--black);
-      padding: 2rem;
+      background: var(--panel);
+      padding: 2.2rem;
       position: relative;
-      transition: background 0.2s ease;
+      overflow: hidden;
+      transition: background 0.25s ease;
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
     }
 
-    .project-card:hover {
-      background: #1e2229;
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--green), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
+
+    .project-card:hover { background: #131b24; }
+    .project-card:hover::before { opacity: 1; }
 
     .project-card.full {
       grid-column: 1 / -1;
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
     }
 
     .project-tag {
       font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 0.8rem;
+      color: var(--green-dim);
+      margin-bottom: 0.7rem;
     }
 
     .project-name {
-      font-family: var(--display);
-      font-size: 2.4rem;
-      letter-spacing: 0.04em;
+      font-family: var(--orb);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       color: var(--white);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.9rem;
       line-height: 1;
     }
 
     .project-desc {
       font-size: 0.875rem;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--dim);
       font-weight: 300;
     }
 
     .project-desc strong {
-      color: #888;
+      color: #6a8fa8;
       font-weight: 400;
     }
 
     .project-status {
-      display: inline-block;
-      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
       font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-      border: 1px solid #2e3440;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
       color: var(--dim);
     }
 
     .project-status.active {
-      border-color: var(--yellow);
-      color: var(--yellow);
+      border-color: var(--green-dim);
+      color: var(--green);
     }
 
-    /* ── laws ── */
-    .laws {
-      opacity: 0;
-      animation: fadeUp 0.6s ease 0.45s forwards;
-      margin: 4rem 0;
+    .project-status.active::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 1.5s ease infinite;
     }
 
+    /* LAWS */
     .law {
       display: grid;
-      grid-template-columns: 2rem 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 2rem;
       align-items: start;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #252a32;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .law:first-of-type {
-      border-top: 1px solid #252a32;
-    }
+    .law:first-of-type { border-top: 1px solid var(--border); }
 
     .law-num {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--yellow);
-      padding-top: 0.15rem;
-      letter-spacing: 0.1em;
+      font-family: var(--orb);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
     }
 
     .law-text {
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.95rem;
+      line-height: 1.75;
       color: var(--dim);
       font-style: italic;
-      font-weight: 300;
+      padding-top: 0.15rem;
     }
 
     .law-text strong {
@@ -242,11 +314,10 @@
       font-weight: 400;
     }
 
-    /* ── footer ── */
+    /* FOOTER */
     footer {
-      opacity: 0;
-      animation: fadeUp 0.6s ease 0.6s forwards;
       padding: 3rem 0 4rem;
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -256,68 +327,80 @@
 
     .footer-left {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
       color: var(--dim);
       text-transform: uppercase;
-      line-height: 1.8;
+      line-height: 2;
     }
 
     .footer-links {
       display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      gap: 2rem;
     }
 
     .footer-links a {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--dim);
       text-decoration: none;
       transition: color 0.2s ease;
+      position: relative;
     }
 
-    .footer-links a:hover {
-      color: var(--yellow);
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      transform-origin: left;
     }
 
-    /* ── location tag ── */
-    .location {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #2e3440;
-      margin-bottom: 5rem;
-    }
+    .footer-links a:hover { color: var(--green); }
+    .footer-links a:hover::after { transform: scaleX(1); }
 
-    /* ── animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── responsive ── */
-    @media (max-width: 600px) {
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    @media (max-width: 640px) {
       .project-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
+      .corner-tl, .corner-tr { display: none; }
       footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
+
+  <div class="corner-tl"></div>
+  <div class="corner-tr"></div>
+
   <div class="page">
 
-    <header>
-      <img src="Enhanced_logo.png" alt="Goatface Tech" />
-      <div class="brand">Goatface Tech &nbsp;·&nbsp; <span>Est. 2026</span></div>
-    </header>
-
-    <section class="hero">
-      <p class="hero-eyebrow">Independent AI Research · Sundre, Alberta</p>
-      <h1>AI Built<br/><em>Different</em></h1>
+    <section class="hero" style="border-top:none;">
+      <div class="logo-wrap">
+        <img src="Enhanced_logo.jpeg" alt="Goatface Tech" />
+      </div>
+      <p class="hero-eyebrow">Independent AI Research &nbsp;·&nbsp; Sundre, Alberta &nbsp;·&nbsp; Est. 2026</p>
+      <h1>AI Built <span class="accent">Different</span></h1>
       <p class="hero-sub">
         Not fine-tuning someone else's model.<br/>
         Not wrapping an API.<br/>
@@ -325,11 +408,10 @@
         Built from the ground up, on modest hardware,<br/>
         in a small town in Alberta.
       </p>
+      <p class="scroll-hint"><span>▼</span> &nbsp; Scroll to explore</p>
     </section>
 
-    <hr class="rule" />
-
-    <section class="projects">
+    <section>
       <p class="section-label">Active Projects</p>
       <div class="project-grid">
 
@@ -351,7 +433,7 @@
           <p class="project-desc">
             Native Compression Intelligence. An original AI architecture
             built around knowledge graphs and semantic compression.
-            <strong>Running on custom hardware in Sundre, Alberta.</strong>
+            <strong>Running live on custom hardware in Sundre, Alberta.</strong>
           </p>
           <span class="project-status active">Live · Session 30+</span>
         </div>
@@ -361,7 +443,7 @@
           <p class="project-name">NCI Ethics Core</p>
           <p class="project-desc">
             A dedicated hardware chip that executes Terse ethics rules in silicon.
-            Ethics rules written in Terse, compiled to hardware.
+            Ethics written in code, enforced in hardware.
             <strong>You can't jailbreak silicon.</strong>
             A hardware ethics engine is not a filter — it is a physical constraint
             upstream of all software.
@@ -372,9 +454,8 @@
       </div>
     </section>
 
-    <section class="laws">
+    <section>
       <p class="section-label">The Three Laws of Terse</p>
-
       <div class="law">
         <span class="law-num">I</span>
         <p class="law-text"><strong>"Knowledge is not stored, it is organized.</strong> Retrieval is not lookup, it is reconstruction."</p>
@@ -389,15 +470,14 @@
       </div>
     </section>
 
-    <p class="location">48.1999° N, 114.6407° W &nbsp;·&nbsp; Sundre, Alberta &nbsp;·&nbsp; 2026</p>
-
     <footer>
       <div class="footer-left">
-        © 2026 Goatface Tech<br/>
-        Lesley Ancion
+        © 2026 Goatface Tech &nbsp;·&nbsp; Lesley Ancion<br/>
+        Sundre, Alberta &nbsp;·&nbsp; Canada
       </div>
       <nav class="footer-links">
         <a href="https://terse.goatfacetech.com">Terse Docs</a>
+        <a href="https://www.youtube.com/@GoatfaceTech" target="_blank">YouTube</a>
         <a href="mailto:info@goatfacetech.com">Contact</a>
       </nav>
     </footer>
