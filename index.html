@@ -83,19 +83,10 @@
       animation: fadeIn 1s ease 0.2s forwards;
     }
 
-    .logo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -60px;
-      background: radial-gradient(ellipse at center, rgba(0,230,118,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
     .logo-wrap img {
       width: min(460px, 82vw);
       height: auto;
       display: block;
-      filter: drop-shadow(0 0 25px rgba(0,230,118,0.25)) drop-shadow(0 0 60px rgba(0,230,118,0.08));
     }
 
     .hero-eyebrow {
@@ -397,7 +388,8 @@
 
     <section class="hero" style="border-top:none;">
       <div class="logo-wrap">
-        <img src="Enhanced_logo.jpeg" alt="Goatface Tech" />
+        <img src="logo.png" alt="Goatface Tech" />
+        <p style="font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,4vw,2rem); font-weight:900; letter-spacing:0.15em; margin-top:1rem; color:#e8eaf0;">GOATFACE <span style="color:#00e676;">TECH</span></p>
       </div>
       <p class="hero-eyebrow">Independent AI Research &nbsp;·&nbsp; Sundre, Alberta &nbsp;·&nbsp; Est. 2026</p>
       <h1>AI Built <span class="accent">Different</span></h1>
