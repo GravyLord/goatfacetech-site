@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Goatface Tech — AI Built Different</title>
+  <title>Goatface Tech — Built to Protect Children</title>
+  <meta name="description" content="Goatface Tech builds AI safety infrastructure for households. Original architecture. Original ideas. Built in Sundre, Alberta." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
@@ -103,10 +104,10 @@
 
     .hero h1 {
       font-family: var(--orb);
-      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-size: clamp(2.2rem, 7vw, 4.5rem);
       font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: 0.06em;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 1.8rem;
       opacity: 0;
@@ -123,7 +124,7 @@
       font-weight: 300;
       line-height: 2;
       color: var(--dim);
-      max-width: 420px;
+      max-width: 480px;
       opacity: 0;
       animation: fadeIn 0.6s ease 1.1s forwards;
     }
@@ -175,6 +176,41 @@
       flex: 1;
       height: 1px;
       background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* MISSION */
+    .mission-block {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .mission-block p {
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--dim);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-block p strong {
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .mission-block .mission-closer {
+      font-family: var(--orb);
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      line-height: 1.6;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .mission-block .mission-closer .accent {
+      color: var(--green);
     }
 
     /* PROJECT CARDS */
@@ -270,6 +306,121 @@
       background: var(--green);
       box-shadow: 0 0 8px var(--green);
       animation: pulse 1.5s ease infinite;
+    }
+
+    .project-status.coming {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .project-status.coming::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+
+    /* LONG PATH (law enforcement) */
+    .long-path {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .long-path p {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--dim);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .long-path p strong {
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .long-path .partners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .long-path .partner-tag {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      color: var(--dim);
+    }
+
+    /* CONNECT */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .connect-card {
+      background: var(--panel);
+      padding: 2.5rem 2.2rem;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+    }
+
+    .connect-card .connect-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--green-dim);
+      margin-bottom: 0.9rem;
+    }
+
+    .connect-card h3 {
+      font-family: var(--orb);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .connect-card p {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--dim);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .connect-btn {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      padding: 0.7rem 1.3rem;
+      border: 1px solid var(--green-dim);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .connect-btn:hover {
+      background: rgba(0,230,118,0.08);
+      border-color: var(--green);
+      box-shadow: 0 0 16px rgba(0,230,118,0.2);
     }
 
     /* LAWS */
@@ -375,6 +526,7 @@
 
     @media (max-width: 640px) {
       .project-grid { grid-template-columns: 1fr; }
+      .connect-grid { grid-template-columns: 1fr; }
       .corner-tl, .corner-tr { display: none; }
       footer { flex-direction: column; align-items: flex-start; }
     }
@@ -393,15 +545,45 @@
         <p style="font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,4vw,2rem); font-weight:900; letter-spacing:0.15em; margin-top:1rem; color:#e8eaf0;">GOATFACE <span style="color:#00e676;">TECH</span></p>
       </div>
       <p class="hero-eyebrow">Independent AI Research &nbsp;·&nbsp; Sundre, Alberta &nbsp;·&nbsp; Est. 2026</p>
-      <h1>AI Built <span class="accent">Different</span></h1>
+      <h1>Built to Protect <span class="accent">Children</span></h1>
       <p class="hero-sub">
-        Not fine-tuning someone else's model.<br/>
-        Not wrapping an API.<br/>
-        <strong>Original architecture. Original ideas.</strong><br/>
-        Built from the ground up, on modest hardware,<br/>
-        in a small town in Alberta.
+        Most AI was not designed with children in mind.<br/>
+        Predators reach kids through platforms that were never built to stop them.<br/>
+        <strong>We are building the infrastructure that should already exist.</strong><br/>
+        Original architecture. Original ideas.<br/>
+        From a small town in Alberta.
       </p>
       <p class="scroll-hint"><span>▼</span> &nbsp; Scroll to explore</p>
+    </section>
+
+    <section>
+      <p class="section-label">Why We Exist</p>
+      <div class="mission-block">
+        <p>
+          Children today interact with AI systems, social platforms, and online games
+          that were not designed with their safety as a primary concern.
+        </p>
+        <p>
+          Predators use these platforms because they offer scale, anonymity,
+          and cross-platform reach that physical-world predation never had.
+          Grooming patterns that used to take months in person can now happen
+          in days through chat-based tools.
+        </p>
+        <p>
+          The burden of protection has fallen entirely on individual parents,
+          who are expected to monitor every platform and every conversation,
+          with no infrastructure to support them.
+        </p>
+        <p>
+          <strong>That is not sustainable. It is also not fair.</strong>
+          Most parents are not equipped to identify grooming patterns in real time,
+          and they should not have to be.
+        </p>
+        <p class="mission-closer">
+          We build the <span class="accent">infrastructure</span><br/>
+          that should already exist.
+        </p>
+      </div>
     </section>
 
     <section>
@@ -409,26 +591,41 @@
       <div class="project-grid">
 
         <div class="project-card">
-          <p class="project-tag">Language</p>
-          <p class="project-name">Terse</p>
-          <p class="project-desc">
-            A programming language designed for AI systems from day one.
-            Reads like English. Compiles to native machine code via LLVM.
-            <strong>Knowledge graphs, inference, tensors, and ethics
-            are core grammar — not libraries.</strong>
-          </p>
-          <span class="project-status active">In Development</span>
-        </div>
-
-        <div class="project-card">
           <p class="project-tag">AI Architecture</p>
           <p class="project-name">NCI</p>
           <p class="project-desc">
             Native Compression Intelligence. An original AI architecture
             built around knowledge graphs and semantic compression.
-            <strong>Running live on custom hardware in Sundre, Alberta.</strong>
+            <strong>Designed to run on hardware ordinary families already own.
+            No GPU. No cloud. No subscription.</strong>
           </p>
           <span class="project-status active">Live · Session 30+</span>
+        </div>
+
+        <div class="project-card">
+          <p class="project-tag">Language</p>
+          <p class="project-name">Terse</p>
+          <p class="project-desc">
+            A programming language designed for AI systems from day one.
+            Reads like English. Compiles to native machine code via LLVM.
+            <strong>The language that makes silicon ethics enforcement possible.</strong>
+          </p>
+          <span class="project-status active">In Development</span>
+        </div>
+
+        <div class="project-card full">
+          <p class="project-tag">First Product</p>
+          <p class="project-name">Goatface Ethics Appliance</p>
+          <p class="project-desc">
+            A network appliance built for households, schools, and small organizations.
+            It brings the NCI Ethics Engine to the AI services and online platforms
+            where children spend their time. It detects predatory patterns. It enforces
+            parent-configured profiles. It preserves evidence in admissible form when
+            something crosses the line.
+            <strong>Works without a subscription, without a cloud account, and without
+            trusting any AI service to police itself.</strong>
+          </p>
+          <span class="project-status active">In Development</span>
         </div>
 
         <div class="project-card full">
@@ -438,12 +635,41 @@
             A dedicated hardware chip that executes Terse ethics rules in silicon.
             Ethics written in code, enforced in hardware.
             <strong>You can't jailbreak silicon.</strong>
-            A hardware ethics engine is not a filter — it is a physical constraint
-            upstream of all software.
+            Software ethics layers can be disabled, modified, exploited, or forged.
+            Silicon cannot be any of these. Designed for the cases where the answer
+            is non-negotiable — where no parent, no vendor, no user, and no software
+            exploit should ever be able to turn the rule off.
           </p>
           <span class="project-status">Planned · Phase 6</span>
         </div>
 
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">The Long Path</p>
+      <div class="long-path">
+        <p>
+          Detection in the home is the first step. The longer goal is to contribute
+          meaningfully to the prosecution of predators — not just to block their
+          messages from reaching individual children.
+        </p>
+        <p>
+          <strong>Technology is rarely the limiting factor in this work.</strong>
+          Legal authority, evidence-chain integrity, and jurisdictional coordination
+          are. The right path runs through formal partnerships with established
+          child-safety organizations.
+        </p>
+        <p>
+          We are committed to doing this work the right way, because predators
+          going free on technicalities is not an acceptable outcome.
+        </p>
+        <div class="partners">
+          <span class="partner-tag">NCMEC</span>
+          <span class="partner-tag">ICAC</span>
+          <span class="partner-tag">RCMP NCECC</span>
+          <span class="partner-tag">Thorn</span>
+        </div>
       </div>
     </section>
 
@@ -463,13 +689,40 @@
       </div>
     </section>
 
+    <section>
+      <p class="section-label">Stay Connected</p>
+      <div class="connect-grid">
+
+        <div class="connect-card">
+          <p class="connect-label">For Followers</p>
+          <h3>Newsletter</h3>
+          <p>
+            Updates on the project, the technology, and our work toward
+            shipping the first product. Low frequency. No spam.
+          </p>
+          <a href="#newsletter" class="connect-btn">Join the newsletter →</a>
+        </div>
+
+        <div class="connect-card">
+          <p class="connect-label">For Parents</p>
+          <h3>Appliance Waitlist</h3>
+          <p>
+            Be first to know when the Goatface Ethics Appliance ships.
+            Early access for families on the waitlist.
+          </p>
+          <a href="#waitlist" class="connect-btn">Join the waitlist →</a>
+        </div>
+
+      </div>
+    </section>
+
     <footer>
       <div class="footer-left">
         © 2026 Goatface Tech &nbsp;·&nbsp; Lesley Ancion<br/>
         Sundre, Alberta &nbsp;·&nbsp; Canada
       </div>
       <nav class="footer-links">
-        <a href="https://terse.goatfacetech.com">Terse Docs</a>
+        <a href="/concept-summary.pdf">Concept Summary</a>
         <a href="https://www.youtube.com/@GoatfaceTech" target="_blank">YouTube</a>
         <a href="mailto:info@goatfacetech.com">Contact</a>
       </nav>
