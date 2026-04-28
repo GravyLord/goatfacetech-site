@@ -1,0 +1,7 @@
+# Goatface Tech — robots.txt
+# Welcome, crawlers.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://goatfacetech.com/sitemap.xml
