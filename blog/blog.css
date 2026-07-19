@@ -1,0 +1,178 @@
+/* Goatface Tech — blog shelf styles.
+   Shared by /blog/ (index) and each post. Mirrors the main site's design tokens
+   (index.html) so the blog matches without a build system. New posts just link
+   this file + the Google Fonts. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0a0a;
+  --panel:     #0f0f0f;
+  --border:    #1a1a1a;
+  --green:     #00e676;
+  --green-dim: #00a152;
+  --white:     #e8eaf0;
+  --dim:       #4a6070;
+  --orb:  'Orbitron', sans-serif;
+  --mono: 'Share Tech Mono', monospace;
+  --body: 'Exo 2', sans-serif;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--white);
+  font-family: var(--body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* scanline overlay (matches the main site) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* corner brackets */
+.corner-tl, .corner-tr { position: fixed; top: 1.5rem; width: 50px; height: 50px; pointer-events: none; z-index: 10; }
+.corner-tl { left: 1.5rem;  border-top: 2px solid var(--green); border-left: 2px solid var(--green); }
+.corner-tr { right: 1.5rem; border-top: 2px solid var(--green); border-right: 2px solid var(--green); }
+
+.page { max-width: 820px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* ── top bar: wordmark back to home ─────────────────────────────────────────── */
+.blog-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 0 0;
+}
+.blog-home {
+  font-family: var(--orb);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  text-decoration: none;
+}
+.blog-home span { color: var(--green); }
+.blog-home:hover { color: var(--green); }
+.blog-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+/* ── shared label ───────────────────────────────────────────────────────────── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
+
+/* ── blog index: post list ──────────────────────────────────────────────────── */
+.blog-head { padding: 4rem 0 1rem; }
+.blog-head h1 {
+  font-family: var(--orb);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.blog-head p { color: var(--dim); font-weight: 300; line-height: 2; margin-top: 1.2rem; max-width: 560px; }
+
+.post-list { padding: 3rem 0 5rem; }
+.post-item { display: block; text-decoration: none; padding: 2rem 0; border-top: 1px solid var(--border); }
+.post-item:last-child { border-bottom: 1px solid var(--border); }
+.post-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-dim); margin-bottom: 0.8rem; }
+.post-item h2 {
+  font-family: var(--orb);
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+.post-item:hover h2 { color: var(--green); }
+.post-item .excerpt { color: var(--dim); font-weight: 300; line-height: 1.9; margin-top: 0.8rem; }
+.post-item .more { display: inline-block; margin-top: 1rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.post-item:hover .more { color: var(--green); }
+
+/* ── single post: article ───────────────────────────────────────────────────── */
+.article { padding: 3.5rem 0 4rem; }
+.article .eyebrow { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 1.3rem; }
+.article h1 {
+  font-family: var(--orb);
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.12;
+  margin-bottom: 1.2rem;
+}
+.article .byline { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
+
+.prose { max-width: 680px; }
+.prose p { font-size: 1.02rem; line-height: 2; color: var(--dim); font-weight: 300; margin-bottom: 1.6rem; }
+.prose p strong { color: var(--white); font-weight: 400; }
+.prose a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(0,230,118,0.35); }
+.prose a:hover { border-bottom-color: var(--green); }
+.prose h2 {
+  font-family: var(--orb);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin: 2.8rem 0 1.2rem;
+}
+.prose blockquote {
+  font-family: var(--orb);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--white);
+  border-left: 2px solid var(--green);
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  margin: 2rem 0;
+}
+.prose ul { color: var(--dim); font-weight: 300; line-height: 2; margin: 0 0 1.6rem 1.2rem; }
+
+.draft-note {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  border: 1px dashed var(--border);
+  padding: 0.8rem 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.back-link { display: inline-block; margin-top: 3rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); text-decoration: none; }
+.back-link:hover { color: var(--green); }
+
+/* ── footer (matches main site) ─────────────────────────────────────────────── */
+footer { padding: 3rem 0 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 4rem; }
+.footer-left { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--dim); text-transform: uppercase; line-height: 2; }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.2s ease; }
+.footer-links a:hover { color: var(--green); }
+
+@media (max-width: 640px) {
+  .corner-tl, .corner-tr { display: none; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .page { padding: 0 1.5rem; }
+}
